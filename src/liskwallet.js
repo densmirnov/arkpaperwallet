@@ -7,7 +7,7 @@ import bignum from 'browserify-bignum'
 
 let nacl = nacl_factory.instantiate()
 
-window.LiskWallet = (passphrase) => {
+window.ArkWallet = (passphrase) => {
   if (!passphrase) {
     passphrase = bip39.generateMnemonic()
   }
@@ -40,13 +40,13 @@ window.LiskWallet = (passphrase) => {
   }
 }
 
-window.LiskWallet.generateMnemonic = () => {
+window.ArkWallet.generateMnemonic = () => {
   return bip39.generateMnemonic()
 }
 
-window.LiskWallet.validateMnemonic = (mnemonic) => {
+window.ArkWallet.validateMnemonic = (mnemonic) => {
   return bip39.validateMnemonic(mnemonic)
 }
 
-window.LiskWallet.randomBytes = crypto.randomBytes
-window.LiskWallet.entropyToMnemonic = bip39.entropyToMnemonic
+window.ArkWallet.randomBytes = crypto.randomBytes
+window.ArkWallet.entropyToMnemonic = bip39.entropyToMnemonic

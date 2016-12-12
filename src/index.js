@@ -102,7 +102,7 @@ let main = () => {
     let passphrase
 
     let build = () => {
-      let lw = LiskWallet(passphrase)
+      let lw = ArkWallet(passphrase)
 
       $('.passphrase').text(lw.passphrase)
       $('.address').text(lw.address)
@@ -209,7 +209,7 @@ let main = () => {
         (entropy) => {
           $bar.hide()
 
-          passphrase = LiskWallet.entropyToMnemonic(entropy)
+          passphrase = ArkWallet.entropyToMnemonic(entropy)
 
           $btns_row.show()
           build()
@@ -237,7 +237,7 @@ let main = () => {
       $enter_text.val('').focus().unbind('keyup').keyup(function (e) {
         let value = fix($enter_text.val())
 
-        if (value.split(' ').length !== 12 || !LiskWallet.validateMnemonic(value)) {
+        if (value.split(' ').length !== 12 || !ArkWallet.validateMnemonic(value)) {
           error(true)
         }
         else {
@@ -350,7 +350,7 @@ function randomBytes (total, it, cb) {
         }
 
         bytes_c[c] = 1
-        bytes[c] = LiskWallet.randomBytes(1)[0]
+        bytes[c] = ArkWallet.randomBytes(1)[0]
 
       }
 

@@ -1,9 +1,9 @@
 
 <img align="right" src="https://cdn.rawgit.com/feross/standard/master/badge.svg">
 
-# liskpaperwallet.com
+# arkpaperwallet.com
 
-Unofficial paper wallet generator for Lisk cryptocurrency. In development.
+Unofficial paper wallet generator for Ark cryptocurrency. In development.
 
 ## License
 

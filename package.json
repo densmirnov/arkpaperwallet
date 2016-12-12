@@ -1,12 +1,12 @@
 {
-  "name": "liskpaperwallet",
+  "name": "arkpaperwallet",
   "version": "0.2.5",
-  "description": "Unofficial paper wallet generator for Lisk cryptocurrency. In development.",
-  "homepage": "https://github.com/rferro/liskpaperwallet",
-  "bugs": "https://github.com/rferro/liskpaperwallet/issues",
+  "description": "Unofficial paper wallet generator for Ark cryptocurrency. In development.",
+  "homepage": "https://github.com/densmirnov/arkpaperwallet",
+  "bugs": "https://github.com/densmirnov/arkpaperwallet/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rferro/liskpaperwallet"
+    "url": "https://github.com/densmirnov/arkpaperwallet"
   },
   "dependencies": {
     "babel-cli": "^6.6.5",

@@ -1,5 +1,5 @@
 {
-  "name": "liskpaperwallet",
+  "name": "arkpaperwallet",
   "dependencies": {
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.3",
