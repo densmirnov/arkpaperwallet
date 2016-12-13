@@ -1,129 +1,443 @@
 @import '../third-party/Inconsolata/css/inconsolata.css';
-#preload {
-  display: none;
-  background: url(../images/01.png), url(../images/01a.png), url(../images/02.png), url(../images/02a.png);
+@import '../third-party/lato-font/css/lato-font.css';
+* {
+    outline: 0 !important;
 }
-body {
-  margin-bottom: 80px;
-}
-.after,
-.bar,
-.enter,
-.btns,
-.restart {
-  display: none;
-}
-.btns {
-  margin-bottom: 30px;
-}
-.btns span.or {
-  font-size: 140%;
-  padding: 0 10px;
-}
-.page-header h1 a {
-  color: #222;
-}
-.page-header .gh-btns {
-  height: 28px;
-}
-.page-header .gh-btns iframe {
-  margin: 0 5px !important;
-}
-.hash {
-  font-family: Inconsolata;
-  word-wrap: break-word;
-  cursor: pointer;
-  font-weight: bold;
-}
-.entropy-tmp {
-  color: #555;
-}
-.passphrase,
-.address {
-  text-align: center;
-}
-.address {
-  font-size: 200%;
-}
-.passphrase {
-  font-size: 150%;
-}
-.ppk {
-  opacity: 0.4;
-}
-.progress-bar {
-  background-image: none;
-  background-color: #0288d1;
-}
-.qr_address,
-.qr_passphrase {
-  margin: 30px 0;
-}
-.enter input {
-  text-align: center;
-}
-.paper-wrapper {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  cursor: default;
-}
-.paper-wrapper .paper {
-  position: absolute;
-}
-.paper-wrapper .paper .qr {
-  position: absolute;
-}
-.paper-wrapper .paper .address,
-.paper-wrapper .paper .passphrase,
-.paper-wrapper .paper .address_label,
-.paper-wrapper .paper .passphrase_label,
-.paper-wrapper .paper .amount_label {
-  position: absolute;
-  white-space: nowrap;
-  color: #2c2c2c;
-}
-@media print {
-  .noprint,
-  .noprint * {
+
+.ng-cloak {
     display: none;
-  }
 }
-.ball {
-  position: absolute;
-  background-color: #f57c00;
-  border-radius: 10px;
-  animation: ball 0.2s;
-  opacity: 0.3;
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
+
+#preload {
+    display: none;
+    background: url(../images/01.png), url(../images/01a.png), url(../images/02.png), url(../images/02a.png);
 }
-@keyframes ball {
-  0% {
-    width: 0;
-    height: 0;
-    margin: 0;
-  }
+
+body {
+    font-family: "Lato";
+    margin-bottom: 60px;
 }
-.pulsate {
-  animation: pulsate 1s ease-out;
-  animation-iteration-count: infinite;
+
+.page-header {
+    border-bottom: 1px solid #efefef;
 }
+
+.page-header h1 a {
+    color: #222;
+}
+
+.page-header h5 small {
+    color: #999;
+}
+
+.page-header h5 small a {
+    color: #555;
+}
+
+.page-header .version {
+    color: #bbb;
+    font-size: 20px;
+}
+
+.page-header .gh-btns {
+    height: 28px;
+}
+
+.page-header .gh-btns iframe {
+    margin: 0 5px !important;
+}
+
+entropy .btns {
+    margin-bottom: 25px;
+}
+
+entropy .btns .btn {
+    margin: 5px 0;
+}
+
+entropy byte {
+    display: inline-block;
+    text-align: center;
+    font-size: 160%;
+    font-family: Inconsolata;
+    padding: 4px 6px;
+    color: #555;
+    line-height: 1.1;
+    margin: 2px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color: #95a5a6;
+    color: #fff;
+}
+
+entropy byte .dec {
+    font-size: 60%;
+    color: #ddd;
+}
+
+entropy byte.change-add,
+entropy byte.change-remove {
+    transition: all .1s linear;
+}
+
+entropy byte.change,
+entropy byte.change-add-active,
+entropy byte.change-remove {
+    background-color: #E70B3A;
+    transform: scale(1.1);
+}
+
+entropy byte.change-remove-active {
+    background-color: #95a5a6;
+    transform: none;
+}
+
+entropy .pulsate {
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
+}
+
 @keyframes pulsate {
-  0% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1.0;
-  }
-  100% {
-    opacity: 0.4;
-  }
+    0% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.4;
+    }
 }
-.progress .progress-bar {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
+
+entropy .progress {
+    width: 80%;
+    margin: 20px auto;
+}
+
+entropy .progress-bar {
+    background-image: none;
+    background-color: #E70B3A;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+entropy input {
+    font-family: Inconsolata;
+}
+
+wallet .hash {
+    font-family: Inconsolata;
+    word-wrap: break-word;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+wallet .hash.passphrase {
+    font-size: 140%;
+    font-weight: bold;
+}
+
+wallet .hash.address {
+    font-size: 170%;
+    font-weight: bold;
+}
+
+wallet .data span:not(.badge) {
+    color: #888;
+}
+
+wallet qrcode.big img {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+wallet .paper-wrapper {
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    cursor: default;
+    border: 1px solid #777;
+}
+
+wallet .paper-wrapper * {
+    position: absolute;
+}
+
+wallet .paper-wrapper img {
+    top: 0;
+    left: 0;
+}
+
+wallet .paper-wrapper .paper .address,
+wallet .paper-wrapper .paper .passphrase,
+wallet .paper-wrapper .paper .amount_label {
+    white-space: nowrap;
+    color: #2c2c2c;
+}
+
+wallet .paper-wrapper .paper .address_label,
+wallet .paper-wrapper .paper .passphrase_label {
+    white-space: nowrap;
+    color: #FFFFFF;
+}
+
+.cssload-loader {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    margin: 30px auto;
+    border-radius: 6px;
+    background-color: #333;
+    transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    animation: cssload-loader 0.75s linear infinite;
+    -o-animation: cssload-loader 0.75s linear infinite;
+    -ms-animation: cssload-loader 0.75s linear infinite;
+    -webkit-animation: cssload-loader 0.75s linear infinite;
+    -moz-animation: cssload-loader 0.75s linear infinite;
+}
+
+.cssload-loader:before {
+    content: "";
+    position: absolute;
+    background-color: #333;
+    top: 0px;
+    left: -13px;
+    height: 6px;
+    width: 6px;
+    border-radius: 6px;
+    opacity: 0.5;
+}
+
+.cssload-loader:after {
+    content: "";
+    position: absolute;
+    background-color: #333;
+    top: 0px;
+    left: 13px;
+    height: 6px;
+    width: 6px;
+    border-radius: 6px;
+    opacity: 0.5;
+}
+
+.panel-success > .panel-heading {
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.panel-success {
+    border-color: #E70B3A;
+}
+
+.panel-danger > .panel-heading {
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.panel-danger {
+    border-color: #E70B3A;
+}
+
+a {
+    color: #E70B3A;
+}
+
+a:hover,
+a:focus {
+    color: #B90930;
+}
+
+.has-success .form-control,
+.has-success .form-control:focus {
+    border: 2px solid #E70B3A;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-success {
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.btn-success:hover {
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-success:active:hover,
+.btn-success.active:hover,
+.open > .dropdown-toggle.btn-success:hover,
+.btn-success:active:focus,
+.btn-success.active:focus,
+.open > .dropdown-toggle.btn-success:focus,
+.btn-success.focus:active,
+.btn-success.active.focus,
+.open > .dropdown-toggle.btn-success.focus {
+    background-color: #B90930;
+    border-color: #B90930;
+    color: #ffffff;
+}
+
+.btn-success:focus,
+.btn-success.focus {
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+    color: #ffffff;
+}
+
+.btn-info {
+    color: #ffffff;
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+    color: #ffffff;
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.btn-info:hover {
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+    color: #ffffff;
+    background-color: #B90930;
+    border-color: #B90930;
+}
+
+.btn-info:active:hover,
+.btn-info.active:hover,
+.open > .dropdown-toggle.btn-info:hover,
+.btn-info:active:focus,
+.btn-info.active:focus,
+.open > .dropdown-toggle.btn-info:focus,
+.btn-info:active.focus,
+.btn-info.active.focus,
+.open > .dropdown-toggle.btn-info.focus {
+    color: #ffffff;
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+.btn-info:active,
+.btn-info.active,
+.open > .dropdown-toggle.btn-info {
+    background-image: none;
+}
+
+.btn-info.disabled:hover,
+.btn-info[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.btn-info.disabled:focus,
+.btn-info[disabled]:focus,
+fieldset[disabled] .btn-info:focus,
+.btn-info.disabled.focus,
+.btn-info[disabled].focus,
+fieldset[disabled] .btn-info.focus {
+    background-color: #E70B3A;
+    border-color: #E70B3A;
+}
+
+@keyframes cssload-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@-o-keyframes cssload-loader {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(180deg);
+    }
+}
+
+@-ms-keyframes cssload-loader {
+    0% {
+        -ms-transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(180deg);
+    }
+}
+
+@-webkit-keyframes cssload-loader {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+@-moz-keyframes cssload-loader {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(180deg);
+    }
+}
+
+@media print {
+    .noprint,
+    .noprint * {
+        display: none;
+    }
 }
