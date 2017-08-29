@@ -1,146 +1,140 @@
 <!DOCTYPE html>
 <html class="no-js">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ark &bull; Paper Wallet</title>
+    <title>Ark Paper Wallet v1.0.2</title>
     <meta name="description" content="Paper wallet generator for Ark cryptocurrency.">
-    <meta name="keywords" content="ark,paperwallet,paper,wallet,cryptocurrency,ark.io">
+    <meta name="keywords" content="ark,paperwallet,paper,wallet,cryptocurrency,ark.io,crypti">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="third-party/bootswatch-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/index.css">
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-</head>
-
-<body ng-controller="main" ng-cloak>
+  </head>
+  <body ng-controller="main" ng-cloak>
     <div class="container-fluid">
-        <div class="row noprint">
-            <div class="col-md-12">
-                <div class="page-header text-center">
-                    <h1><a href="index.html">Ark Paper Wallet</a> <span class="version">v1.0.0</span>
+      <div class="row noprint">
+        <div class="col-md-12">
+          <div class="page-header text-center">
+            <h1><a href="index.html">Ark Paper Wallet</a> <span class="version">v1.0.2</span>
             </h1>
-                    <h5>Official paper wallet generator for <a href="https://ark.io" target="blank">Ark</a> cryptocurrency. Source code is available <a href="https://github.com/densmirnov/arkpaperwallet" target="blank">here</a>.
+            <h5>Paper wallet generator for <a href="http://ark.io" target="blank">Ark</a> cryptocurrency. Hosted by Github Pages. Source code is available <a href="https://github.com/arkecosystem/ark-paperwallet" target="blank">here</a>.
             </h5>
-                    <h5 class="text-center"><small>We recommended use this tool offline: <a href="https://github.com/densmirnov/arkpaperwallet/archive/v1.0.0.tar.gz" class="alert-link">download</a> the source code and open index.html in your browser without internet access.</small></h5>
-                    <div class="gh-btns"><a href="https://github.com/densmirnov/arkpaperwallet" data-icon="octicon-eye" data-style="mega" data-count-href="/densmirnov/arkpaperwallet/watchers" data-count-api="/repos/densmirnov/arkpaperwallet#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch densmirnov/arkpaperwallet on GitHub" class="github-button">Watch</a><a href="https://github.com/densmirnov/arkpaperwallet" data-icon="octicon-star" data-style="mega" data-count-href="/densmirnov/arkpaperwallet/stargazers" data-count-api="/repos/densmirnov/arkpaperwallet#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star densmirnov/arkpaperwallet on GitHub" class="github-button">Star</a><a href="https://github.com/densmirnov/arkpaperwallet/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/densmirnov/arkpaperwallet/network" data-count-api="/repos/densmirnov/arkpaperwallet#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork densmirnov/arkpaperwallet on GitHub" class="github-button">Fork</a><a href="https://github.com/densmirnov/arkpaperwallet/issues" data-icon="octicon-issue-opened" data-style="mega" data-count-api="/repos/densmirnov/arkpaperwallet#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue densmirnov/arkpaperwallet on GitHub" class="github-button">Issue</a><a href="https://github.com/densmirnov/arkpaperwallet/archive/v1.0.0.tar.gz" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download densmirnov/arkpaperwallet on GitHub" class="github-button">Download</a></div>
-                </div>
-            </div>
+          </div>
         </div>
-        <entropy></entropy>
-        <wallet></wallet>
-        <div id="preload"></div>
+      </div>
+      <entropy></entropy>
+      <wallet></wallet>
+      <div id="preload"></div>
     </div>
     <script type="text/ng-template" id="entropy">
-        <div class="row noprint btns">
-            <div class="col-md-12 text-center">
-                <button type="button" ng-click="random.start()" ng-disabled="btn_disabled" class="btn btn-info btn_random">Create a new random wallet</button>
-                <button type="button" ng-click="enter.start()" ng-disabled="btn_disabled" class="btn btn-info">Enter a secret passphrase</button>
-            </div>
+      <div class="row noprint btns">
+        <div class="col-md-12 text-center">
+          <button type="button" ng-click="random.start()" ng-disabled="btn_disabled" class="btn btn-info btn_random">Create a new random wallet</button>
+          <button type="button" ng-click="enter.start()" ng-disabled="btn_disabled" class="btn btn-info">Enter a secret passphrase</button>
         </div>
-        <div ng-show="enter.started" class="row noprint">
-            <div class="col-md-12 text-center">
-                <div class="form-group">
-                    <input type="text" placeholder="enter your passphrase here" ng-model="enter.value" ng-keyup="enterKeyUp($event)" class="form-control input-lg text-center input_passphrase">
-                </div>
-                <button ng-disabled="!enter.valid" ng-click="enterGenerate()" class="btn btn-default btn_generate">Generate</button>
-            </div>
+      </div>
+      <div ng-show="enter.started" class="row noprint">
+        <div class="col-md-12 text-center">
+          <div class="form-group">
+            <input type="text" placeholder="enter your passphrase here" ng-model="enter.value" ng-keyup="enterKeyUp($event)" class="form-control input-lg text-center input_passphrase">
+          </div>
+          <button ng-disabled="!enter.valid" ng-click="enterGenerate()" class="btn btn-default btn_generate">Generate</button>
         </div>
-        <div class="row noprint">
-            <div ng-show="random.started" class="col-md-12">
-                <h4 class="text-center pulsaste">Move your mouse to generate random bytes</h4>
-                <uib-progressbar max="100" value="random.progress"></uib-progressbar>
-                <div class="bytes text-center">
-                    <byte ng-repeat="byte in random.tmp track by $index" ng-data="byte" animate-on-change="byte"></byte>
-                </div>
-            </div>
+      </div>
+      <div class="row noprint">
+        <div ng-show="random.started" class="col-md-12">
+          <h4 class="text-center pulsaste">Move your mouse to generate random bytes</h4>
+          <uib-progressbar max="100" value="random.progress"></uib-progressbar>
+          <div class="bytes text-center">
+            <byte ng-repeat="byte in random.tmp track by $index" ng-data="byte" animate-on-change="byte"></byte>
+          </div>
         </div>
+      </div>
     </script>
     <script type="text/ng-template" id="byte">
-        <div ng-bind="hex" class="hex"></div>
-        <div ng-bind="dec" class="dec"></div>
+      <div ng-bind="hex" class="hex"></div>
+      <div ng-bind="dec" class="dec"></div>
     </script>
     <script type="text/ng-template" id="wallet">
-        <div class="row noprint loading">
-            <div class="col-md-12">
-                <div class="cssload-loader"></div>
-            </div>
+      <div class="row noprint loading">
+        <div class="col-md-12">
+          <div class="cssload-loader"></div>
         </div>
-        <div class="row noprint after">
-            <div class="col-md-12">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Secret Passphrase (KEEP SAFE)</h3>
-                    </div>
-                    <div class="panel-body text-center"><span ng-bind="data.passphrase" clipboard class="hash passphrase"></span></div>
-                </div>
+      </div>
+      <div class="row noprint after">
+        <div class="col-md-12">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title text-center">Secret Passphrase (KEEP SAFE)</h3>
             </div>
+            <div class="panel-body text-center"><span ng-bind="data.passphrase" clipboard class="hash passphrase"></span></div>
+          </div>
         </div>
-        <div class="row noprint after">
-            <div class="col-md-12">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Public Address (SHARE)</h3>
-                    </div>
-                    <div class="panel-body text-center"><span ng-bind="data.address" clipboard class="hash address"></span></div>
-                </div>
+      </div>
+      <div class="row noprint after">
+        <div class="col-md-12">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title text-center">Public Address (SHARE)</h3>
             </div>
+            <div class="panel-body text-center"><span ng-bind="data.address" clipboard class="hash address"></span></div>
+          </div>
         </div>
-        <div class="row noprint after">
-            <div class="col-md-12">
-                <ul class="list-group data">
-                    <li class="list-group-item"><span class="badge">entropy</span><span ng-bind="data.entropy" clipboard class="hash"></span></li>
-                    <li class="list-group-item"><span class="badge">seed</span><span ng-bind="data.seed" clipboard class="hash"></span></li>
-                    <li class="list-group-item"><span class="badge">passphrase sha256</span><span ng-bind="data.hash" clipboard class="hash"></span></li>
-                    <li class="list-group-item"><span class="badge">public key</span><span ng-bind="data.publicKey" clipboard class="hash"></span></li>
-                    <li class="list-group-item"><span class="badge">private key</span><span ng-bind="data.privateKey" clipboard class="hash"></span></li>
-                </ul>
-            </div>
+      </div>
+      <div class="row noprint after">
+        <div class="col-md-12">
+          <ul class="list-group data">
+            <li class="list-group-item"><span class="badge">entropy</span><span ng-bind="data.entropy" clipboard class="hash"></span></li>
+            <li class="list-group-item"><span class="badge">seed</span><span ng-bind="data.seed" clipboard class="hash"></span></li>
+            <li class="list-group-item"><span class="badge">public key</span><span ng-bind="data.publicKey" clipboard class="hash"></span></li>
+            <li class="list-group-item"><span class="badge">WIF</span><span ng-bind="data.wif" clipboard class="hash"></span></li>
+          </ul>
         </div>
-        <div class="row noprint after">
-            <div class="col-md-6 text-center">
-                <h2>Public Address <small>SHARE</small>
+      </div>
+      <div class="row noprint after">
+        <div class="col-md-6 text-center">
+          <h2>Public Address <small>SHARE</small>
           </h2>
-                <qrcode data="data.address" size="240" class="big"></qrcode>
-            </div>
-            <div class="col-md-6 text-center">
-                <h2>Secret Passphrase <small>KEEP SAFE</small>
+          <qrcode data="data.addressqr" size="240" class="big"></qrcode>
+        </div>
+        <div class="col-md-6 text-center">
+          <h2>Secret Passphrase <small>KEEP SAFE</small>
           </h2>
-                <qrcode data="data.passphrase" size="240" class="big"></qrcode>
-            </div>
+          <qrcode data="data.passphraseqr" size="240" class="big"></qrcode>
         </div>
-        <div class="row after">
-            <div class="col-md-12 text-center">
-                <h2 class="noprint">Paper Wallet</h2>
-                <div class="papers noprint">
-                    <div class="btn-group btn-group-xs">
-                        <button ng-repeat="(id, art) in arts" ng-bind="id" ng-click="set_art(id)" ng-class="{ 'btn-primary': id === art_active, 'btn-info': id !== art_active }" ng-if="id &gt; 0" class="btn"></button>
-                    </div>
-                    <button type="button" ng-model="amount" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="btn btn-xs btn-success">Show amount</button>
-                </div>
+      </div>
+      <div class="row after">
+        <div class="col-md-12 text-center">
+          <h2 class="noprint">Paper Wallet</h2>
+          <div class="papers noprint">
+            <div class="btn-group btn-group-xs">
+              <button ng-repeat="(id, art) in arts" ng-bind="id" ng-click="set_art(id)" ng-class="{ 'btn-primary': id === art_active, 'btn-info': id !== art_active }" ng-if="id &gt; 0" class="btn"></button>
             </div>
+            <button type="button" ng-model="amount" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="btn btn-xs btn-success">Show amount</button>
+          </div>
         </div>
-        <div class="row after">
-            <div class="col-md-12 text-center">
-                <div ng-style="{ width: art.width + 2, height: art.height + 2 }" class="paper-wrapper center-block">
-                    <div ng-style="{ width: art.width, height: art.height }" class="paper"><img ng-src="images/{{ art.image }}{{ amount ? 'a' : '' }}.png">
-                        <qrcode data="data.address" size="art.address.qr.size" ng-style="art.address.qr"></qrcode>
-                        <qrcode data="data.passphrase" size="art.passphrase.qr.size" ng-style="art.passphrase.qr"></qrcode>
-                        <div ng-bind="data.address" ng-style="art.address.text" class="address"></div>
-                        <div ng-hide="art.address.label.hide" ng-style="art.address.label" class="address_label">public address</div>
-                        <div ng-bind="data.passphrase" ng-style="art.passphrase.text" class="passphrase"></div>
-                        <div ng-hide="art.passphrase.label.hide" ng-style="art.passphrase.label" class="passphrase_label">secret passphrase</div>
-                        <div ng-show="amount" ng-style="art.amount.label" class="amount_label">amount:</div>
-                    </div>
-                </div>
+      </div>
+      <div class="row after">
+        <div class="col-md-12 text-center">
+          <div ng-style="{ width: art.width + 2, height: art.height + 2 }" class="paper-wrapper center-block">
+            <div ng-style="{ width: art.width, height: art.height }" class="paper"><img ng-src="images/{{ art.image }}{{ amount ? 'a' : '' }}.png">
+              <qrcode data="data.addressqr" size="art.address.qr.size" ng-style="art.address.qr"></qrcode>
+              <qrcode data="data.passphraseqr" size="art.passphrase.qr.size" ng-style="art.passphrase.qr"></qrcode>
+              <div ng-bind="data.address" ng-style="art.address.text" class="address"></div>
+              <div ng-hide="art.address.label.hide" ng-style="art.address.label" class="address_label">public address</div>
+              <div ng-bind="data.passphrase" ng-style="art.passphrase.text" class="passphrase"></div>
+              <div ng-hide="art.passphrase.label.hide" ng-style="art.passphrase.label" class="passphrase_label">secret passphrase</div>
+              <div ng-show="amount" ng-style="art.amount.label" class="amount_label">amount:</div>
             </div>
+          </div>
         </div>
-        <div class="row noprint after">
-            <div class="col-md-12 text-center">
-                <button type="button" ng-click="print()" class="btn btn-success"><span aria-hidden="true" class="glyphicon glyphicon-print"></span> Print Paper Wallet
-                </button>
-            </div>
+      </div>
+      <div class="row noprint after">
+        <div class="col-md-12 text-center">
+          <button type="button" ng-click="print()" class="btn btn-warning"><span aria-hidden="true" class="glyphicon glyphicon-print"></span> Print Paper Wallet
+          </button>
         </div>
+      </div>
     </script>
     <script src="third-party/jquery/dist/jquery.min.js"></script>
     <script src="third-party/jquery-qrcode/dist/jquery.qrcode.min.js"></script>
@@ -148,24 +142,8 @@
     <script src="third-party/angular-animate/angular-animate.min.js"></script>
     <script src="third-party/bootswatch-dist/js/bootstrap.min.js"></script>
     <script src="third-party/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="lib/arkwallet.js"></script>
+    <script src="lib/wallet.js"></script>
     <script src="lib/index.js"></script>
     <script id="github-bjs" async defer src="https://buttons.github.io/buttons.js"></script>
-    <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-52537305-30', 'auto');
-    ga('send', 'pageview');
-    </script>
-</body>
-
+  </body>
 </html>
